@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.todo.mapper.TodoMapper">
+    <select id="getTodoList" resultType="todoVo">
+        SELECT * FROM todo.todo_table
+        ORDER BY id DESC
+    </select>
+    
+    <insert id="insertTodo" parameterType="todoVo">
+        INSERT INTO todo.todo_table VALUES (default, #{title})
+    </insert>
+    
+    <update id="updateTodo" parameterType="todoVo">
+        UPDATE todo.todo_table
+        SET done = #{done}
+        WHERE id = #{id}
+    </update>
+</mapper>
