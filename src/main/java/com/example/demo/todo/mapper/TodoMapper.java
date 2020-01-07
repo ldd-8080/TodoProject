@@ -15,4 +15,5 @@ public interface TodoMapper {
 
 	void updateTodo(TodoVo todoVo);
 
+	void deleteTodo(TodoVo todoVo);
 }

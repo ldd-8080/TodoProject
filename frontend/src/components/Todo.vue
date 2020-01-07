@@ -17,13 +17,14 @@
       </b-form-group>
 
       <b-list-group v-if="toDoItems && toDoItems.length">
-        <b-list-group-item v-for="toDoItem of toDoItems" v-bind:data="toDoItem.id" v-bind:key="toDoItem.id" style="display: flex;">
+        <b-list-group-item class="list-group-item-flex" v-for="(toDoItem, index) of toDoItems" v-bind:data="toDoItem.id" v-bind:key="toDoItem.id" @mouseover="overEvent(index)" @mouseout="outEvent(index)">
           <b-form-checkbox v-model="toDoItem.done" @change="markDone(toDoItem)">
           </b-form-checkbox>
-          <span v-if="toDoItem.done" style="text-decoration: line-through; color: #D3D3D3;">
+          <span class="item-span" v-if="toDoItem.done" style="text-decoration: line-through; color: #D3D3D3;">
             {{toDoItem.title}}
           </span>
-          <span v-else>{{toDoItem.title}}</span>
+          <span class="item-span" v-else>{{toDoItem.title}}</span>
+          <b-button ref="deleteBtn" variant="danger" size="sm" @click="deleteTodo(toDoItem)" hidden>Delete</b-button>
         </b-list-group-item>
       </b-list-group>
     </b-card>
@@ -90,7 +91,40 @@ export default {
         .catch(e => {
           console.log('error', e)
         })
+    },
+    overEvent: function (index) {
+      this.$refs.deleteBtn[index].hidden = false
+    },
+    outEvent: function (index) {
+      this.$refs.deleteBtn[index].hidden = true
+    },
+    deleteTodo: function (toDoItem) {
+      console.log(toDoItem)
+      if (!confirm('삭제?')) return
+
+      let vm = this
+
+      axios.delete(baseUrl, {data: toDoItem})
+        .then(response => {
+          vm.initTodoList()
+        })
+        .catch(e => {
+          console.log('error', e)
+        })
     }
   }
 }
 </script>
+
+<style scoped>
+.list-group-item-flex {
+  display: flex;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.item-span {
+  flex: 1 1 auto;
+}
+</style>

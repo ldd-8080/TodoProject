@@ -15,4 +15,9 @@
         SET done = #{done}
         WHERE id = #{id}
     </update>
+    
+    <delete id="deleteTodo" parameterType="todoVo">
+        DELETE FROM todo.todo_table
+        WHERE id = #{id}
+    </delete>
 </mapper>
