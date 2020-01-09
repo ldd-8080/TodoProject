@@ -34,7 +34,7 @@
 <script>
 import axios from 'axios'
 
-let baseUrl = 'http://127.0.0.1:4000/todo'
+let baseUrl = '/todo'
 
 export default {
   name: 'Todo',
