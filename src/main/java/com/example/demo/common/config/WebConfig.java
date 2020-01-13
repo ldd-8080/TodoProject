@@ -11,10 +11,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan
 public class WebConfig implements WebMvcConfigurer{
 
-    @Override
+    /*@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
     	registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/static/");
-    }
+    }*/
 	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {

@@ -1,12 +1,18 @@
 <template>
   <div id="app">
-    <router-view/>
+    <!-- <router-view/> -->
+    <todo></todo>
   </div>
 </template>
 
 <script>
+import Todo from './components/Todo.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'todo': Todo
+  }
 }
 </script>
 

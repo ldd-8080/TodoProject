@@ -18,8 +18,7 @@
 
       <b-list-group v-if="toDoItems && toDoItems.length">
         <b-list-group-item class="list-group-item-flex" v-for="(toDoItem, index) of toDoItems" v-bind:data="toDoItem.id" v-bind:key="toDoItem.id" @mouseover="overEvent(index)" @mouseout="outEvent(index)">
-          <b-form-checkbox v-model="toDoItem.done" @change="markDone(toDoItem)">
-          </b-form-checkbox>
+          <b-form-checkbox v-model="toDoItem.done" @change="markDone(toDoItem)"></b-form-checkbox>
           <span class="item-span" v-if="toDoItem.done" style="text-decoration: line-through; color: #D3D3D3;">
             {{toDoItem.title}}
           </span>
@@ -41,8 +40,8 @@ export default {
   data () {
     return {
       toDoItems: [
-        // {id: '1', title: 'first'},
-        // {id: '2', title: 'second'}
+        // {id: '1', title: 'first', done: false},
+        // {id: '2', title: 'second', done: true}
       ],
       newToDoItemRequest: {}
     }
